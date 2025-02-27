@@ -141,7 +141,7 @@ export default function Navbar() {
               {width > 1200 ? (
                 <div>
                   <button className="bg-white px-[20px] py-[10px] rounded-md text-black">
-                    Contact Us {activeNavbar}
+                    Contact Us
                   </button>
                 </div>
               ) : (
@@ -151,7 +151,7 @@ export default function Navbar() {
           </div>
         </div>
       </div>
-      {activeNavbar && navigation[0].children !== null && width > 1200 && (
+      {activeNavbar !== null && width > 1200 && (
         <div
           className={`flex justify-center bg-white z-[49px] fixed top-0 w-full transition-transform duration-300 ${
             isVisible ? "translate-y-0" : "-translate-y-full"
