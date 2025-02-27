@@ -1,0 +1,32 @@
+name: CI - Check Build
+
+on:
+  pull_request:
+    branches:
+      - development
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout kode dari repository
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Step 2: Setup Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "20.18.1" # Ganti dengan versi Node.js yang digunakan oleh project Anda
+
+      # Step 3: Install dependencies
+      - name: Install dependencies
+        run: npm install
+
+      # Step 4: Build aplikasi
+      - name: Build aplikasi
+        run: npm run build
+
+    # Step 5: Tandai workflow gagal jika build error
+    # Jika step ini gagal, pull request tidak dapat di-merge
