@@ -15,6 +15,68 @@ import Image from "next/image";
 import Footer from "./footer";
 
 const images = ["/sample/card.jpg", "/sample/5.jpg", "/sample/6.jpg"];
+
+const offer = [
+  {
+    image: "/offer/1.png",
+    href: "#",
+    title: "Demand Generation",
+    description:
+      "Utilize our AI Tuning engine to create predictable sales & marketing workflows that create new opportunities, boost demand & secure B2B meetings",
+  },
+  {
+    image: "/offer/2.png",
+    href: "#",
+    title: "AI Incubation",
+    description:
+      "Implement AI-driven agentic solutions that generate subscription revenue and actionable data for upselling and cross-selling",
+  },
+  {
+    image: "/offer/3.png",
+    href: "#",
+    title: "AI Digital Transformation",
+    description:
+      "Help companies adopt AI through training and workflows, enhancing efficiency and innovation",
+  },
+  {
+    image: "/offer/4.png",
+    href: "#",
+    title: "Capability Development",
+    description:
+      "Master AI and machine learning with expert-driven courses and unlock new opportunities for your career and business",
+  },
+];
+
+const enable = [
+  {
+    image: "/enabling/1.svg",
+    href: "#",
+    title: "Assess",
+    description:
+      "Evaluate AI's potential, your team's maturity, and your data to pinpoint impactful AI opportunities.",
+  },
+  {
+    image: "/enabling/2.svg",
+    href: "#",
+    title: "Strategize",
+    description:
+      "Develop an actionable AI strategy with clear KPIs, tailored to your needs, budget, and data.",
+  },
+  {
+    image: "/enabling/3.svg",
+    href: "#",
+    title: "Implement",
+    description:
+      "Deploy AI solutions, from off-the-shelf tools to custom projects, to drive business impact.",
+  },
+  {
+    image: "/enabling/4.svg",
+    href: "#",
+    title: "Evolve",
+    description:
+      "Continuously optimize and update your AI solutions to maintain your competitive edge.",
+  },
+];
 export default function PageHome() {
   // Start : embla
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
@@ -112,13 +174,13 @@ export default function PageHome() {
       {/* Marque  */}
 
       <Marquee className="mt-8">
-        {Array.from({ length: 10 }).map((_, index) => (
+        {[1, 2, 3, 4, 5, 6, 7, 8, 7, 6, 5, 4].map((i, index) => (
           <div className="px-4" key={index}>
             <Image
-              src="/redis.svg"
+              src={`/brand/blue-${i}.png`}
               alt="sample"
-              width={200}
-              height={200}
+              width={100}
+              height={100}
               className="mr-4"
             />
           </div>
@@ -130,14 +192,14 @@ export default function PageHome() {
           <div className="text-xl lg:text-3xl text-center">What We Offer</div>
           <div className="text-[#3958e9] text-center mt-5">Our Services</div>
           <div className="flex flex-col items-center gap-5 mt-[50px]">
-            {Array.from({ length: 4 }).map((_, index) => (
+            {offer.map((item, index) => (
               <div
                 key={index}
                 className="flex justify-between flex-col md:flex-row rounded-[40px] gap-[44px] max-w-[1000px] bg-[#f6f6f6] p-[90px]"
               >
                 <div className="flex items-center justify-center">
                   <Image
-                    src="/redis.svg"
+                    src={item.image}
                     alt="sample"
                     width={400}
                     height={400}
@@ -145,12 +207,8 @@ export default function PageHome() {
                   />
                 </div>
                 <div>
-                  <div className="text-xl font-medium">Demand Generation</div>
-                  <div className="text-sm mt-[20px]">
-                    Utilize our AI Tuning engine to create predictable sales &
-                    marketing workflows that create new opportunities, boost
-                    demand & secure B2B meetings
-                  </div>
+                  <div className="text-xl font-medium">{item.title}</div>
+                  <div className="text-sm mt-[20px]">{item.description}</div>
                   <button className="mt-[30px] rounded-md flex items-center text-white bg-[#3958e9] px-[30px] py-[10px]">
                     Read More
                   </button>
@@ -167,14 +225,15 @@ export default function PageHome() {
             Enabling Businesses with AI
           </div>
           <div className="flex flex-col lg:flex-row items-center  gap-5 mt-[50px]">
-            {Array.from({ length: 4 }).map((_, index) => (
+            {enable.map((item, index) => (
               <div
                 key={index}
-                className="flex justify-between flex-col rounded-[40px] gap-[44px] max-w-[1000px] bg-[#f6f6f6] py-[60px] px-[20px]"
+                // hover animation
+                className="flex cursor-pointer hover:bg-[#18368f] hover:text-white justify-between flex-col rounded-[40px] gap-[44px] max-w-[1000px] bg-[#f6f6f6] py-[60px] px-[20px] transition-all duration-300 ease-in-out"
               >
-                <div className="flex items-center  justify-center">
+                <div className="flex items-center justify-center">
                   <Image
-                    src="/redis.svg"
+                    src={item.image}
                     alt="sample"
                     width={100}
                     height={100}
@@ -182,12 +241,10 @@ export default function PageHome() {
                 </div>
                 <div>
                   <div className="text-base font-medium text-center">
-                    Demand Generation
+                    {item.title}
                   </div>
                   <div className="text-sm mt-[20px] text-center">
-                    Utilize our AI Tuning engine to create predictable sales &
-                    marketing workflows that create new opportunities, boost
-                    demand & secure B2B meetings
+                    {item.description}
                   </div>
                 </div>
               </div>

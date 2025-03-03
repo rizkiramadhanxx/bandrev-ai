@@ -34,7 +34,31 @@ const navigation = [
       },
     ],
   },
-  { name: "AI Solution", href: "/promo", pathname: "promo" },
+  {
+    name: "AI Solution",
+    href: "/promo",
+    pathname: "promo",
+    children: [
+      {
+        name: "Home",
+        href: "/",
+        image: "/sample/redis.jpg",
+        pathname: "",
+      },
+      {
+        name: "Promo",
+        href: "/promo",
+        pathname: "promo",
+        image: "/sample/redis.jpg",
+      },
+      {
+        name: "Profil",
+        href: "/profil",
+        pathname: "profil",
+        image: "/sample/redis.jpg",
+      },
+    ],
+  },
   { name: "Capability Development", href: "/profil", pathname: "profil" },
   { name: "AI Resource", href: "/profil", pathname: "profil" },
   { name: "Our Project", href: "/profil", pathname: "profil" },
@@ -81,15 +105,15 @@ export default function Navbar() {
               <div className="flex items-center gap-5">
                 <div>
                   <Image
-                    src="/logo.png"
+                    src="/logo/brandev.png"
                     alt="logo"
                     width={0}
                     height={0}
                     sizes="100vw"
-                    className="w-[50px] h-[50px] md:w-[100px] md:h-[100px] object-contain"
+                    className="w-[100px] h-[100px] md:w-[150px] md:h-[150px] object-contain"
                   />
                 </div>
-                <div className="flex md:gap-2 items-center">
+                <div className="flex md:gap-2 items-center pl-[30px] border-l-2 border-white">
                   {width > 1200 &&
                     navigation.map((item, index) => (
                       <div key={item.name} className="flex items-center">
@@ -159,10 +183,24 @@ export default function Navbar() {
         >
           <div className="main-container w-full items-center">
             <div className={cn("h-[150px] md:h-[200px]")}>
-              <div className="pt-[120px] flex pl-[150px] gap-[50px]">
-                <Image src="/redis.svg" alt="sample" width={100} height={100} />
-                <Image src="/redis.svg" alt="sample" width={100} height={100} />
-                <Image src="/redis.svg" alt="sample" width={100} height={100} />
+              <div className="pt-[120px] flex pl-[200px] gap-[50px]">
+                {navigation[activeNavbar].children?.map((item) => (
+                  <div key={item.name}>
+                    <a
+                      href={item.href}
+                      className=" hover:text-white px-3 py-1 transition-all duration-200 rounded-md"
+                    >
+                      <Image
+                        src={item.image}
+                        alt="icon"
+                        width={0}
+                        height={0}
+                        sizes="100vw"
+                        className="w-[50px] h-[50px] md:w-[100px] md:h-[100px] object-contain"
+                      />
+                    </a>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
