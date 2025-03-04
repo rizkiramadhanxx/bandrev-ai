@@ -57,7 +57,6 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      console.log("scroll");
       setActiveNavbar(null);
 
       if (window.scrollY > lastScrollY) {
@@ -66,8 +65,6 @@ export default function Navbar() {
         setIsVisible(true); // Muncul saat scroll ke atas
       }
       lastScrollY = window.scrollY;
-
-      console.log(window.scrollY);
 
       if (navbarRef.current) {
         if (window.scrollY < 50) {
