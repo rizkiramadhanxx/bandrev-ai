@@ -2,9 +2,10 @@
 
 import useWindow from "@/hooks/useWindow";
 import { cn } from "@/utils/cn";
+import gsap from "gsap";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { BsList, BsX } from "react-icons/bs";
 import { CgChevronDoubleDown, CgChevronDown } from "react-icons/cg";
 
@@ -13,26 +14,6 @@ const navigation = [
     name: "Demand Generation",
     href: "/",
     pathname: "",
-    children: [
-      {
-        name: "Home",
-        href: "/",
-        image: "/sample/redis.jpg",
-        pathname: "",
-      },
-      {
-        name: "Promo",
-        href: "/promo",
-        pathname: "promo",
-        image: "/sample/redis.jpg",
-      },
-      {
-        name: "Profil",
-        href: "/profil",
-        pathname: "profil",
-        image: "/sample/redis.jpg",
-      },
-    ],
   },
   {
     name: "AI Solution",
@@ -40,22 +21,22 @@ const navigation = [
     pathname: "promo",
     children: [
       {
-        name: "Home",
-        href: "/",
-        image: "/sample/redis.jpg",
+        name: "AI Development",
+        href: "/ai-development",
+        image: "/navbar/ai-development.png",
         pathname: "",
       },
       {
-        name: "Promo",
-        href: "/promo",
+        name: "GenAI Assets",
+        href: "/gen-ai-assets",
         pathname: "promo",
-        image: "/sample/redis.jpg",
+        image: "/sample/gen-ai.png",
       },
       {
-        name: "Profil",
-        href: "/profil",
+        name: "Platform",
+        href: "/platform",
         pathname: "profil",
-        image: "/sample/redis.jpg",
+        image: "/sample/tune-ai.jpg",
       },
     ],
   },
@@ -68,12 +49,15 @@ export default function Navbar() {
   const pathname = usePathname();
   const [toggle, setToggle] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
+  const submenuRef = useRef(null);
+  const navbarRef = useRef(null);
+  let lastScrollY = 0;
 
   const [activeNavbar, setActiveNavbar] = useState<null | number>(null);
-  let lastScrollY = 0;
 
   useEffect(() => {
     const handleScroll = () => {
+      console.log("scroll");
       setActiveNavbar(null);
 
       if (window.scrollY > lastScrollY) {
@@ -82,6 +66,22 @@ export default function Navbar() {
         setIsVisible(true); // Muncul saat scroll ke atas
       }
       lastScrollY = window.scrollY;
+
+      console.log(window.scrollY);
+
+      if (navbarRef.current) {
+        if (window.scrollY < 50) {
+          gsap.to(navbarRef.current, {
+            backgroundColor: "transparent",
+            duration: 0.3,
+          });
+        } else {
+          gsap.to(navbarRef.current, {
+            backgroundColor: "#3958e9",
+            duration: 0.3,
+          });
+        }
+      }
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -90,18 +90,42 @@ export default function Navbar() {
     };
   }, []);
 
+  useEffect(() => {
+    if (submenuRef.current) {
+      if (activeNavbar !== null) {
+        gsap.fromTo(
+          submenuRef.current,
+          { opacity: 0, y: -20 },
+          { opacity: 1, y: 0, duration: 0.3, ease: "power2.out" }
+        );
+        gsap.to(navbarRef.current, {
+          backgroundColor: "#3958e9",
+          duration: 0.3,
+        });
+      } else {
+        gsap.to(submenuRef.current, {
+          opacity: 0,
+          y: -20,
+          duration: 0.3,
+          ease: "power2.in",
+        });
+      }
+    }
+  }, [activeNavbar]);
+
   const { width } = useWindow();
 
   return (
     <div>
       <div
-        className={`flex justify-center bg-[#3958e9] z-50 fixed top-0 w-full transition-transform duration-300 ${
+        ref={navbarRef}
+        className={`flex justify-center z-50 fixed top-0 w-full transition-transform duration-300 ${
           isVisible ? "translate-y-0" : "-translate-y-full"
         }`}
       >
         <div className="main-container w-full items-center">
           <div className={cn("h-[60px] md:h-[80px]")}>
-            <div className="text-white flex h-[80px]  items-center justify-between px-4">
+            <div className="text-white flex md:h-[80px] h-[60px] items-center justify-between px-4">
               <div className="flex items-center gap-5">
                 <div>
                   <Image
@@ -116,7 +140,10 @@ export default function Navbar() {
                 <div className="flex md:gap-2 items-center pl-[30px] border-l-2 border-white">
                   {width > 1200 &&
                     navigation.map((item, index) => (
-                      <div key={item.name} className="flex items-center">
+                      <div
+                        key={item.name}
+                        className="flex hover:font-bold items-center"
+                      >
                         {item.children?.length ? (
                           <button
                             onClick={() => {
@@ -128,8 +155,8 @@ export default function Navbar() {
                             }}
                             className={`${
                               item.pathname === pathname.split("/")[1]
-                                ? " text-white underline font-bold underline-offset-4"
-                                : "text-white hover:bg-[#1e4a32] hover:text-white"
+                                ? " text-white  font-bold "
+                                : "text-white hover:text-white"
                             } px-3 py-1 transition-all duration-200 rounded-md`}
                           >
                             {item.name}
@@ -139,8 +166,8 @@ export default function Navbar() {
                             href={item.href}
                             className={`${
                               item.pathname === pathname.split("/")[1]
-                                ? " text-white underline font-bold underline-offset-4"
-                                : "text-white hover:bg-[#1e4a32] hover:text-white"
+                                ? " text-white font-bold"
+                                : "text-white hover:text-white"
                             } px-3 py-1 transition-all duration-200 rounded-md`}
                           >
                             {item.name}
@@ -177,27 +204,27 @@ export default function Navbar() {
       </div>
       {activeNavbar !== null && width > 1200 && (
         <div
+          ref={submenuRef}
           className={`flex justify-center bg-white z-[49px] fixed top-0 w-full transition-transform duration-300 ${
             isVisible ? "translate-y-0" : "-translate-y-full"
           }`}
         >
           <div className="main-container w-full items-center">
-            <div className={cn("h-[150px] md:h-[200px]")}>
-              <div className="pt-[120px] flex pl-[200px] gap-[50px]">
+            <div className={cn("h-[150px] md:h-[250px]")}>
+              <div className="pt-[100px] flex pl-[200px] gap-[50px]">
                 {navigation[activeNavbar].children?.map((item) => (
                   <div key={item.name}>
                     <a
                       href={item.href}
-                      className=" hover:text-white px-3 py-1 transition-all duration-200 rounded-md"
+                      className=" hover:text-[#3958e9] flex flex-col justify-center items-center px-3 py-1 transition-all duration-200 rounded-md"
                     >
                       <Image
-                        src={item.image}
+                        src="/navbar/ai-deveploment.png"
                         alt="icon"
-                        width={0}
-                        height={0}
-                        sizes="100vw"
-                        className="w-[50px] h-[50px] md:w-[100px] md:h-[100px] object-contain"
+                        width={80}
+                        height={80}
                       />
+                      <div className="text-center mt-5">{item.name}</div>
                     </a>
                   </div>
                 ))}
