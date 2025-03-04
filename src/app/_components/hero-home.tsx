@@ -1,11 +1,24 @@
 "use client";
 
+import gsap from "gsap";
+import { useEffect, useRef } from "react";
+
 export default function HeroHome() {
+  const boxRef = useRef(null);
+
+  useEffect(() => {
+    gsap.from(boxRef.current, {
+      duration: 1.5,
+      opacity: 0,
+      y: 50,
+      ease: "power2.out",
+    });
+  }, []);
   return (
     <div className="flex justify-center pt-[50px] md:pt-[60px] min-h-[100vh] bg-[#3958e9]">
       <div className="main-container w-[100%]">
         <div className="flex items-center h-[100%]">
-          <div>
+          <div ref={boxRef}>
             <h1 className="text-xl lg:text-5xl  text-white font-bold">
               Discover what AI can do for you
             </h1>

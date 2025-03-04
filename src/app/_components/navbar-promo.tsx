@@ -51,6 +51,16 @@ export default function Navbar() {
   const [isVisible, setIsVisible] = useState(true);
   const submenuRef = useRef(null);
   const navbarRef = useRef(null);
+  const boxRef = useRef(null);
+
+  useEffect(() => {
+    gsap.from(boxRef.current, {
+      duration: 1.5,
+      opacity: 0,
+      y: 50,
+      ease: "power2.out",
+    });
+  }, []);
   let lastScrollY = 0;
 
   const [activeNavbar, setActiveNavbar] = useState<null | number>(null);
@@ -123,7 +133,7 @@ export default function Navbar() {
         <div className="main-container w-full items-center">
           <div className={cn("h-[60px] md:h-[80px]")}>
             <div className="text-white flex md:h-[80px] h-[60px] items-center justify-between px-4">
-              <div className="flex items-center gap-5">
+              <div className="flex items-center gap-5" ref={boxRef}>
                 <div>
                   <Image
                     src="/logo/brandev.png"

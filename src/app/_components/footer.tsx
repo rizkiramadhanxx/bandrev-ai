@@ -7,7 +7,7 @@ export default function Footer() {
     <div className="flex pt-[100px] justify-center bg-slate">
       <div className="main-container w-[100%]">
         <div className="grid grid-cols-1 lg:grid-cols-[2fr_4fr] py-[50px] gap-10">
-          <div>
+          <div className="fade-up">
             <div>
               Leverage AI-powered solutions for sustainable revenue, efficient
               operations, and maximized client retention. Take the first step
@@ -32,7 +32,7 @@ export default function Footer() {
             </div>
           </div>
           <div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-[20px] md:gap-[8px">
+            <div className="grid fade-up grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-[20px] md:gap-[8px">
               <div>
                 <div className="text-lg font-bold">Demand Generation</div>
                 <div className="flex flex-col mt-[20px]">

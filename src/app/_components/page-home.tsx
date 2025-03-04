@@ -2,17 +2,18 @@
 
 /* eslint-disable @next/next/no-img-element */
 import { Dialog } from "@headlessui/react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
+import useEmblaCarousel from "embla-carousel-react";
+import gsap from "gsap";
+import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
+import Marquee from "react-fast-marquee";
 import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
 import { BsX } from "react-icons/bs";
-import CardPromo from "@/app/promo/_components/card-promo";
-import useEmblaCarousel from "embla-carousel-react";
-import Navbar from "./navbar-promo";
-import HeroHome from "./hero-home";
-import Marquee from "react-fast-marquee";
-import Image from "next/image";
 import Footer from "./footer";
+import HeroHome from "./hero-home";
+import Navbar from "./navbar-promo";
 
 const images = ["/sample/card.jpg", "/sample/5.jpg", "/sample/6.jpg"];
 
@@ -78,6 +79,26 @@ const enable = [
   },
 ];
 export default function PageHome() {
+  const containerRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+
+    gsap.utils.toArray(".fade-up").forEach((el) => {
+      // @ts-ignore
+      return gsap.from(el, {
+        opacity: 0,
+        y: 50,
+        duration: 1.5,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: el,
+          start: "top 80%",
+          toggleActions: "play none none none",
+        },
+      });
+    });
+  }, []);
   // Start : embla
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
 
@@ -195,7 +216,7 @@ export default function PageHome() {
             {offer.map((item, index) => (
               <div
                 key={index}
-                className="flex justify-between flex-col md:flex-row rounded-[40px] gap-[44px] max-w-[1000px] bg-[#f6f6f6] p-[90px]"
+                className="flex justify-between fade-up flex-col md:flex-row rounded-[40px] gap-[44px] max-w-[1000px] bg-[#f6f6f6] p-[90px]"
               >
                 <div className="flex items-center justify-center">
                   <Image
@@ -228,8 +249,7 @@ export default function PageHome() {
             {enable.map((item, index) => (
               <div
                 key={index}
-                // hover animation
-                className="flex cursor-pointer hover:bg-[#18368f] hover:text-white justify-between flex-col rounded-[40px] gap-[44px] max-w-[1000px] bg-[#f6f6f6] py-[60px] px-[20px] transition-all duration-300 ease-in-out"
+                className="flex fade-up cursor-pointer hover:bg-[#18368f] hover:text-white justify-between flex-col rounded-[40px] gap-[44px] max-w-[1000px] bg-[#f6f6f6] py-[60px] px-[20px] transition-all duration-300 ease-in-out"
               >
                 <div className="flex items-center justify-center">
                   <Image
