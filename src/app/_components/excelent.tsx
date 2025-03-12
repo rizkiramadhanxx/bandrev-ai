@@ -61,6 +61,7 @@ export default function ScrollAnimation() {
       {items.map((item, index) => (
         <div
           key={index}
+          // @ts-ignore
           ref={(el) => (itemsRef.current[index] = el)}
           className={`h-screen flex items-center justify-center opacity-0 ${item.color}`}
         >
