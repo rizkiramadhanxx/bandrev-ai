@@ -148,8 +148,12 @@ export default function Navbar() {
                   {width > 1200 &&
                     navigation.map((item, index) => (
                       <div
+                        onMouseEnter={() => {
+                          if (!item.children?.length) return;
+                          setActiveNavbar(index);
+                        }}
                         key={item.name}
-                        className="flex hover:font-bold items-center"
+                        className="flex hover:font-medium text-[12px] lg:text-[16px] items-center"
                       >
                         {item.children?.length ? (
                           <button
@@ -162,7 +166,7 @@ export default function Navbar() {
                             }}
                             className={`${
                               item.pathname === pathname.split("/")[1]
-                                ? " text-white  font-bold "
+                                ? " text-white  font-medium "
                                 : "text-white hover:text-white"
                             } px-3 py-1 transition-all duration-200 rounded-md`}
                           >
@@ -212,7 +216,7 @@ export default function Navbar() {
       {activeNavbar !== null && width > 1200 && (
         <div
           ref={submenuRef}
-          className={`flex justify-center bg-white z-[49px] fixed top-0 w-full transition-transform duration-300 ${
+          className={`flex justify-center bg-white z-[49] fixed top-0 w-full transition-transform duration-300 ${
             isVisible ? "translate-y-0" : "-translate-y-full"
           }`}
         >

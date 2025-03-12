@@ -11,11 +11,12 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import Marquee from "react-fast-marquee";
 import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
 import { BsX } from "react-icons/bs";
+import { enable, images, offer } from "../constant";
+import Contact from "./contact";
 import Footer from "./footer";
 import HeroHome from "./hero-home";
 import Navbar from "./navbar";
-import { enable, images, offer } from "../constant";
-import Contact from "./contact";
+import Offer from "./offer";
 
 export default function PageHome() {
   const containerRef = useRef<HTMLDivElement | null>(null);
@@ -147,37 +148,7 @@ export default function PageHome() {
         ))}
       </Marquee>
 
-      <div className="flex py-[100px] justify-center bg-slate">
-        <div className="main-container w-[100%]">
-          <div className="text-xl lg:text-3xl text-center">What We Offer</div>
-          <div className="text-[#3958e9] text-center mt-5">Our Services</div>
-          <div className="flex flex-col items-center gap-5 mt-[50px]">
-            {offer.map((item, index) => (
-              <div
-                key={index}
-                className="flex justify-between fade-up flex-col md:flex-row rounded-[40px] gap-[44px] max-w-[1000px] bg-[#f6f6f6] p-[90px]"
-              >
-                <div className="flex items-center justify-center">
-                  <Image
-                    src={item.image}
-                    alt="sample"
-                    width={400}
-                    height={400}
-                    className="mr-4"
-                  />
-                </div>
-                <div>
-                  <div className="text-xl font-medium">{item.title}</div>
-                  <div className="text-sm mt-[20px]">{item.description}</div>
-                  <button className="mt-[30px] rounded-md flex items-center text-white bg-[#3958e9] px-[30px] py-[10px]">
-                    Read More
-                  </button>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
+      <Offer />
 
       <div className="flex py-[100px] justify-center bg-slate">
         <div className="main-container w-[100%]">
