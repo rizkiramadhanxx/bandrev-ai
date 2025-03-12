@@ -1,17 +1,12 @@
 "use client";
 
-/* eslint-disable @next/next/no-img-element */
-import { Dialog } from "@headlessui/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-import useEmblaCarousel from "embla-carousel-react";
 import gsap from "gsap";
 import Image from "next/image";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import Marquee from "react-fast-marquee";
-import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
-import { BsX } from "react-icons/bs";
-import { enable, images, offer } from "../constant";
+import { enable } from "../constant";
 import Contact from "./contact";
 import Footer from "./footer";
 import HeroHome from "./hero-home";
@@ -19,8 +14,6 @@ import Navbar from "./navbar";
 import Offer from "./offer";
 
 export default function PageHome() {
-  const containerRef = useRef<HTMLDivElement | null>(null);
-
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
@@ -39,98 +32,9 @@ export default function PageHome() {
       });
     });
   }, []);
-  // Start : embla
-  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
-
-  const autoplayInterval = useRef(null);
-
-  const startAutoplay = useCallback(() => {
-    stopAutoplay(); // Clear any existing interval
-    // @ts-ignore
-    autoplayInterval.current = setInterval(() => {
-      if (emblaApi) emblaApi.scrollNext();
-    }, 7000); // Change slides every 7 seconds
-  }, [emblaApi]);
-
-  const stopAutoplay = useCallback(() => {
-    if (autoplayInterval.current) {
-      clearInterval(autoplayInterval.current);
-    }
-  }, []);
-
-  useEffect(() => {
-    if (emblaApi) {
-      startAutoplay();
-      emblaApi.on("pointerDown", stopAutoplay); // Pause on user interaction
-    }
-    return () => stopAutoplay(); // Cleanup on unmount
-  }, [emblaApi, startAutoplay, stopAutoplay]);
-
-  // end : embla
-
-  const [selectedImage, setSelectedImage] = useState<string | null>(null);
-  const [currentIndex, setCurrentIndex] = useState<number | null>(null);
-
-  const openImage = (index: number) => {
-    setSelectedImage(images[index]);
-    setCurrentIndex(index);
-  };
-
-  const nextImage = () => {
-    if (currentIndex !== null && currentIndex < images.length - 1) {
-      openImage(currentIndex + 1);
-    }
-  };
-
-  const prevImage = () => {
-    if (currentIndex !== null && currentIndex > 0) {
-      openImage(currentIndex - 1);
-    }
-  };
 
   return (
     <>
-      <Dialog
-        transition
-        open={!!selectedImage}
-        className="fixed inset-0 flex w-screen items-center justify-center bg-black/30 p-4 transition duration-300 ease-out data-[closed]:opacity-0"
-        onClose={() => setSelectedImage(null)}
-      >
-        <div className="fixed inset-0 flex items-center justify-center bg-black/70">
-          <div className="relative bg-white p-2 md:p-4 rounded-lg max-w-lg w-full">
-            <button
-              className="absolute z-10 top-2 right-2 text-gray-500 hover:text-gray-700"
-              onClick={() => setSelectedImage(null)}
-            >
-              <BsX color="black" size={24} />
-            </button>
-            <div className="relative flex items-center">
-              <button
-                className="absolute left-0 text-gray-500 hover:text-gray-700 disabled:opacity-50"
-                onClick={prevImage}
-                disabled={currentIndex === 0}
-              >
-                <BiChevronLeft size={24} />
-              </button>
-              {selectedImage && (
-                <img
-                  src={selectedImage}
-                  alt="Detail"
-                  className="w-full rounded-lg"
-                />
-              )}
-              <button
-                className="absolute right-0 text-gray-500 hover:text-gray-700 disabled:opacity-50"
-                onClick={nextImage}
-                disabled={currentIndex === images.length - 1}
-              >
-                <BiChevronRight size={24} />
-              </button>
-            </div>
-          </div>
-        </div>
-      </Dialog>
-      <Navbar />
       <HeroHome />
       {/* Marque  */}
 
@@ -183,8 +87,6 @@ export default function PageHome() {
         </div>
       </div>
       <Contact />
-
-      <Footer />
     </>
   );
 }

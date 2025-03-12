@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
+import Navbar from "./_components/navbar";
+import Footer from "./_components/footer";
 
 const NunitoFont = Poppins({
   variable: "--font-nunito-sans",
@@ -21,7 +23,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${NunitoFont.variable} font-nunito antialiased`}>
+        <Navbar />
         {children}
+        <Footer />
       </body>
     </html>
   );

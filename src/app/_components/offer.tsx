@@ -60,14 +60,14 @@ export default function Offer() {
             ref={containerRef}
             className="relative flex flex-col items-center gap-10"
           >
-            <div className="sticky flex justify-between top-[50%] h-2 left-0 w-full">
+            <div className="sticky flex justify-between top-[50%] left-0 w-full">
               <div>
                 {offer.map((item, index) => (
                   <div
                     key={index}
                     className={twMerge(
                       index > 0 && "mt-1",
-                      "h-1 w-5 bg-[#3958E9] rounded-r-full",
+                      "h-2 w-5 bg-[#3958E9] rounded-r-full",
                       // with animation
                       index === activeIndex &&
                         "w-10 duration-100 transition-all"
@@ -82,7 +82,7 @@ export default function Offer() {
                       key={index}
                       className={twMerge(
                         index > 0 && "mt-1",
-                        "h-1 w-5 bg-[#3958E9] rounded-l-full",
+                        "h-2 w-5 bg-[#3958E9] rounded-l-full",
                         // with animation
                         index === activeIndex &&
                           "w-10 duration-100 transition-all"
