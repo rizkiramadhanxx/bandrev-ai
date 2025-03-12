@@ -9,8 +9,8 @@ const NunitoFont = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "Mutiara Cahaya",
-  description: "Mutiara Cahaya",
+  title: "Brandrev AI",
+  description: "Brandrev AI",
 };
 
 export default function RootLayout({
