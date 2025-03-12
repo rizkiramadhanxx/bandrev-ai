@@ -43,7 +43,7 @@ export default function Footer() {
                 height={40}
               />
             </div>
-            <div className="mt-[20px] text-[10px] xl:w-[70%]">
+            <div className="mt-[20px] text-[14px] xl:w-[70%]">
               Leverage AI-powered solutions for sustainable revenue, efficient
               operations, and maximized client retention. Take the first step
               towards an AI-enabled future for your business with Brandrev.
@@ -61,12 +61,12 @@ export default function Footer() {
                 />
               ))}
             </div>
-            <div className="mt-[20px] text-[10px]">
+            <div className="mt-[20px] text-[14px]">
               © Copyright 2025 brandrev.ai · All rights reserved.
             </div>
           </div>
           <div>
-            <div className="grid fade-up text-[10px] grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-[10px] md:gap-[8px">
+            <div className="grid fade-up text-[14px] grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-[10px] md:gap-[8px">
               <div>
                 <div className="font-bold">Demand Generation</div>
                 <div className="flex flex-col mt-[20px]">
