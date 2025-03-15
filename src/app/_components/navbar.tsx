@@ -111,7 +111,11 @@ export default function Navbar() {
               <div className="flex items-center gap-5" ref={boxRef}>
                 <div>
                   <Image
-                    src={isTop ? "/logo/brandev.png" : "/logo/brandev-blue.png"}
+                    src={
+                      isTop && !activeNavbar
+                        ? "/logo/brandev.png"
+                        : "/logo/brandev-blue.png"
+                    }
                     alt="logo"
                     width={0}
                     height={0}
