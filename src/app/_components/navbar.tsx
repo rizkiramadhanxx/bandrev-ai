@@ -17,8 +17,8 @@ const navigation = [
   },
   {
     name: "AI Solution",
-    href: "/promo",
-    pathname: "promo",
+    href: "/ai-solution",
+    pathname: "ai-solution",
     children: [
       {
         name: "AI Development",
@@ -30,19 +30,92 @@ const navigation = [
         name: "GenAI Assets",
         href: "/gen-ai-assets",
         pathname: "promo",
-        image: "/sample/gen-ai.png",
+        image: "/navbar/gen-ai.png",
       },
       {
-        name: "Platform",
+        name: "Tune AI",
         href: "/platform",
         pathname: "profil",
-        image: "/sample/tune-ai.jpg",
+        image: "/navbar/tune-ai.png",
       },
     ],
   },
-  { name: "Capability Development", href: "/profil", pathname: "profil" },
-  { name: "AI Resource", href: "/profil", pathname: "profil" },
-  { name: "Our Project", href: "/profil", pathname: "profil" },
+  {
+    name: "Capability Development",
+    href: "/profil",
+    pathname: "profil",
+    children: [
+      {
+        name: "Corporate Training",
+        href: "/corporate-training",
+        pathname: "corporate-training",
+        image: "/navbar/corporate-training.png",
+      },
+      {
+        name: "Personal Development",
+        href: "/personal-development",
+        pathname: "personal-development",
+        image: "/navbar/personal-development.png",
+      },
+      {
+        name: "PostGrad Scholarship",
+        href: "/postgrad-scholarship",
+        pathname: "postgrad-scholarship",
+        image: "/navbar/postgrad-scholarship.png",
+      },
+    ],
+  },
+  {
+    name: "AI Resource",
+    href: "/profil",
+    pathname: "profil",
+    children: [
+      {
+        name: "AI's Impact on Jobs",
+        href: "/ai-impact-jobs",
+        pathname: "ai-impact-jobs",
+        image: "/navbar/ai-impact-jobs.png",
+      },
+      {
+        name: "AI newsletter",
+        href: "/ai-newsletter",
+        pathname: "ai-newsletter",
+        image: "/navbar/ai-newsletter.png",
+      },
+      {
+        name: "Publications",
+        href: "/publication",
+        pathname: "publication",
+        image: "/navbar/publication.png",
+      },
+    ],
+  },
+
+  {
+    name: "Our Project",
+    href: "/profil",
+    pathname: "profil",
+    children: [
+      {
+        name: "Our Story",
+        href: "/our-story",
+        pathname: "our-story",
+        image: "/navbar/our-story.png",
+      },
+      {
+        name: "Our Project",
+        href: "/our-project",
+        pathname: "our-project",
+        image: "/navbar/our-project.png",
+      },
+      {
+        name: "Event & Keynotes",
+        href: "/event-keynotes",
+        pathname: "event-keynotes",
+        image: "/navbar/event-keynotes.png",
+      },
+    ],
+  },
 ];
 
 export default function Navbar() {
@@ -52,6 +125,7 @@ export default function Navbar() {
   const submenuRef = useRef(null);
   const navbarRef = useRef(null);
   const boxRef = useRef(null);
+  const [isTop, setIsTop] = useState(true);
 
   useEffect(() => {
     gsap.from(boxRef.current, {
@@ -82,11 +156,13 @@ export default function Navbar() {
             backgroundColor: "transparent",
             duration: 0.3,
           });
+          setIsTop(true);
         } else {
           gsap.to(navbarRef.current, {
-            backgroundColor: "#3958e9",
+            backgroundColor: "#E9E9E9",
             duration: 0.3,
           });
+          setIsTop(false);
         }
       }
     };
@@ -106,7 +182,7 @@ export default function Navbar() {
           { opacity: 1, y: 0, duration: 0.3, ease: "power2.out" }
         );
         gsap.to(navbarRef.current, {
-          backgroundColor: "#3958e9",
+          backgroundColor: "#E9E9E9",
           duration: 0.3,
         });
       } else {
@@ -132,11 +208,18 @@ export default function Navbar() {
       >
         <div className="main-container w-full items-center">
           <div className={cn("h-[60px] md:h-[80px]")}>
-            <div className="text-white flex md:h-[80px] h-[60px] items-center justify-between px-4">
+            <div
+              className={cn(
+                " flex md:h-[80px] h-[60px] items-center justify-between px-4",
+                !isTop || activeNavbar !== null || !isVisible
+                  ? "text-[#18368F]"
+                  : "text-white"
+              )}
+            >
               <div className="flex items-center gap-5" ref={boxRef}>
                 <div>
                   <Image
-                    src="/logo/brandev.png"
+                    src={isTop ? "/logo/brandev.png" : "/logo/brandev-blue.png"}
                     alt="logo"
                     width={0}
                     height={0}
@@ -166,8 +249,8 @@ export default function Navbar() {
                             }}
                             className={`${
                               item.pathname === pathname.split("/")[1]
-                                ? " text-white  font-medium "
-                                : "text-white hover:text-white"
+                                ? "font-medium "
+                                : "hover:font-medium"
                             } px-3 py-1 transition-all duration-200 rounded-md`}
                           >
                             {item.name}
@@ -177,8 +260,8 @@ export default function Navbar() {
                             href={item.href}
                             className={`${
                               item.pathname === pathname.split("/")[1]
-                                ? " text-white font-bold"
-                                : "text-white hover:text-white"
+                                ? "font-bold"
+                                : " hover:font-medium"
                             } px-3 py-1 transition-all duration-200 rounded-md`}
                           >
                             {item.name}
@@ -202,7 +285,7 @@ export default function Navbar() {
               </div>
               {width > 1200 ? (
                 <div>
-                  <button className="bg-white px-[20px] py-[10px] rounded-md text-black">
+                  <button className="bg-white px-[20px] py-[10px] rounded-md text-[#18368F]">
                     Contact Us
                   </button>
                 </div>
@@ -216,7 +299,7 @@ export default function Navbar() {
       {activeNavbar !== null && width > 1200 && (
         <div
           ref={submenuRef}
-          className={`flex justify-center bg-white z-[49] fixed top-0 w-full transition-transform duration-300 ${
+          className={`flex justify-center shadow-md bg-white z-[49] fixed top-0 w-full transition-transform duration-300 ${
             isVisible ? "translate-y-0" : "-translate-y-full"
           }`}
         >
@@ -224,14 +307,15 @@ export default function Navbar() {
             <div className={cn("h-[150px] md:h-[250px]")}>
               <div className="pt-[100px] flex pl-[200px] gap-[50px]">
                 {navigation[activeNavbar].children?.map((item) => (
-                  <div key={item.name}>
+                  <div key={item.name} className="max-w-[80%]">
                     <a
                       href={item.href}
-                      className=" hover:text-[#3958e9] flex flex-col justify-center items-center px-3 py-1 transition-all duration-200 rounded-md"
+                      className=" hover:font-medium h-full justify-between flex flex-col items-center px-3 py-1 transition-all duration-200 rounded-md"
                     >
                       <Image
-                        src="/navbar/ai-deveploment.png"
+                        src={item.image}
                         alt="icon"
+                        className="max-h-[80px] max-w-[80px]"
                         width={80}
                         height={80}
                       />
@@ -248,7 +332,7 @@ export default function Navbar() {
       {/* Overlay Menu Mobile */}
       {width < 1200 && (
         <div
-          className={`fixed inset-0 h-screen bg-[#3958e9] text-white flex flex-col items-center justify-center z-50 transition-all duration-300 ${
+          className={`fixed inset-0 h-screen bg-[#E9E9E9] text-white flex flex-col items-center justify-center z-50 transition-all duration-300 ${
             toggle ? "translate-x-0 opacity-100" : "translate-x-full opacity-0"
           }`}
         >
