@@ -132,7 +132,7 @@ export default function Navbar() {
                           setActiveNavbar(index);
                         }}
                         key={item.name}
-                        className="flex hover:font-medium text-[12px] lg:text-[16px] items-center"
+                        className="flex hover:font-medium text-[12px] lg:text-[14px] items-center"
                       >
                         {item.children?.length ? (
                           <button

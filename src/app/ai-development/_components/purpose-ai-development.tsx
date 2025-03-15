@@ -353,9 +353,8 @@ export default function PurposeAIDevelopment() {
                   <Image
                     alt={item.title}
                     src={item.banner}
-                    width={1000}
-                    height={1000}
-                    className="w-full h-full"
+                    width={700}
+                    height={700}
                   />
                   <div className="w-full max-w-2xl mx-auto">
                     <TabGroup
