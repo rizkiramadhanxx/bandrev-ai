@@ -31,6 +31,115 @@ const offer = [
   },
 ];
 
+const navigation = [
+  {
+    name: "Demand Generation",
+    href: "/",
+    pathname: "",
+  },
+  {
+    name: "AI Solution",
+    href: "/ai-solution",
+    pathname: "ai-solution",
+    children: [
+      {
+        name: "AI Development",
+        href: "/ai-development",
+        image: "/navbar/ai-development.png",
+        pathname: "",
+      },
+      {
+        name: "GenAI Assets",
+        href: "/gen-ai-assets",
+        pathname: "promo",
+        image: "/navbar/gen-ai.png",
+      },
+      {
+        name: "Tune AI",
+        href: "/platform",
+        pathname: "profil",
+        image: "/navbar/tune-ai.png",
+      },
+    ],
+  },
+  {
+    name: "Capability Development",
+    href: "/profil",
+    pathname: "profil",
+    children: [
+      {
+        name: "Corporate Training",
+        href: "/corporate-training",
+        pathname: "corporate-training",
+        image: "/navbar/corporate-training.png",
+      },
+      {
+        name: "Personal Development",
+        href: "/personal-development",
+        pathname: "personal-development",
+        image: "/navbar/personal-development.png",
+      },
+      {
+        name: "PostGrad Scholarship",
+        href: "/postgrad-scholarship",
+        pathname: "postgrad-scholarship",
+        image: "/navbar/postgrad-scholarship.png",
+      },
+    ],
+  },
+  {
+    name: "AI Resource",
+    href: "/profil",
+    pathname: "profil",
+    children: [
+      {
+        name: "AI's Impact on Jobs",
+        href: "/ai-impact-jobs",
+        pathname: "ai-impact-jobs",
+        image: "/navbar/ai-impact-jobs.png",
+      },
+      {
+        name: "AI newsletter",
+        href: "/ai-newsletter",
+        pathname: "ai-newsletter",
+        image: "/navbar/ai-newsletter.png",
+      },
+      {
+        name: "Publications",
+        href: "/publication",
+        pathname: "publication",
+        image: "/navbar/publication.png",
+      },
+    ],
+  },
+
+  {
+    name: "Our Project",
+    href: "/profil",
+    pathname: "profil",
+    children: [
+      {
+        name: "Our Story",
+        href: "/our-story",
+        pathname: "our-story",
+        image: "/navbar/our-story.png",
+      },
+      {
+        name: "Our Project",
+        href: "/our-project",
+        pathname: "our-project",
+        image: "/navbar/our-project.png",
+      },
+      {
+        name: "Event & Keynotes",
+        href: "/event-keynotes",
+        pathname: "event-keynotes",
+        image: "/navbar/event-keynotes.png",
+      },
+    ],
+  },
+];
+
 const enable = [
   {
     image: "/enabling/1.svg",
@@ -62,4 +171,4 @@ const enable = [
   },
 ];
 
-export { images, offer, enable };
+export { images, offer, enable, navigation };
