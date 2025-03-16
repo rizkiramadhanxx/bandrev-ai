@@ -7,39 +7,43 @@ export default function Contact() {
       <div className="main-container w-[100%]">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <div className="fade-up p-[27px] text-white border-[2px] rounded-lg">
-            <div className="text-xl">
+            <div className="md:text-xl">
               Read more in our AI Insider Newsletter
             </div>
-            <div className="text-xl mt-2">
+            <div className="md:text-xl mt-2">
               Subscribe today to get the latest AI Insights
             </div>
-            <div className="grid grid-cols-2 gap-2  mt-[46px] ">
-              <div className="flex flex-col">
+            <div className="grid grid-cols-2 gap-2 mt-[46px] ">
+              <div className="flex flex-col text-xs md:text-sm">
                 <label htmlFor="fullname"> Full Name</label>
                 <input
-                  className="bg-white mt-2 focus:border-transparent text-black outline-none focus:ring-0 rounded-md py-[10px] px-[14px]"
+                  className="bg-white mt-2 focus:border-transparent text-black outline-none focus:ring-0 rounded-md px-[10] py-[7px] md:py-[10px] md:px-[14px]"
                   type="text"
                 />
               </div>
-              <div className="flex flex-col">
-                <label htmlFor="fullname"> WhatsApp or Contact Number</label>
+              <div className="flex flex-col text-xs md:text-sm">
+                <label htmlFor="fullname">
+                  {" "}
+                  <span className="hidden md:inline">WhatsApp or</span> Contact
+                  Number
+                </label>
                 <input
-                  className="bg-white mt-2 focus:border-transparent text-black outline-none focus:ring-0 rounded-md py-[10px] px-[14px]"
+                  className="bg-white mt-2 focus:border-transparent text-black outline-none focus:ring-0 rounded-md px-[10] py-[7px] md:py-[10px] md:px-[14px]"
                   type="text"
                 />
               </div>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-[2fr_1fr] gap-2  mt-[46px] ">
-              <div className="flex flex-col">
+              <div className="flex flex-col text-xs md:text-sm">
                 <label htmlFor="fullname">Email Address</label>
                 <input
-                  className="bg-white mt-2 focus:border-transparent text-black outline-none focus:ring-0 rounded-md py-[10px] px-[14px]"
+                  className="bg-white mt-2 focus:border-transparent text-black outline-none focus:ring-0 rounded-md px-[10] py-[7px] md:py-[10px] md:px-[14px]"
                   type="text"
                 />
               </div>
-              <div className="flex flex-col justify-end">
-                <button className="mt-2 text-white flex items-center justify-center gap-2  focus:border-white bg-[#18368f] border-[1px] outline-none focus:ring-0 rounded-md py-[10px] px-[14px]">
-                  <FaChevronCircleRight className="mb-1" size={20} /> Subscribe
+              <div className="flex flex-col justify-end text-xs md:text-sm">
+                <button className="mt-2 text-white flex items-center justify-center gap-2  focus:border-white bg-[#18368f] border-[1px] outline-none focus:ring-0 rounded-md px-[10] py-[7px] md:py-[10px] md:px-[14px]">
+                  <FaChevronCircleRight className="mb-1" /> Subscribe
                 </button>
               </div>
             </div>

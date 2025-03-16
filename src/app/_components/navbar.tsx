@@ -9,6 +9,11 @@ import { useEffect, useRef, useState } from "react";
 import { BsList, BsX } from "react-icons/bs";
 import { CgChevronDoubleDown, CgChevronDown } from "react-icons/cg";
 import { navigation } from "../constant";
+import {
+  Disclosure,
+  DisclosureButton,
+  DisclosurePanel,
+} from "@headlessui/react";
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -123,7 +128,7 @@ export default function Navbar() {
                     className="w-[100px] h-[100px] md:w-[150px] md:h-[150px] object-contain"
                   />
                 </div>
-                <div className="flex md:gap-2 items-center pl-[30px] border-l-2 border-white">
+                <div className="flex md:gap-0 items-center pl-[10px] border-l-2 border-white">
                   {width > 1200 &&
                     navigation.map((item, index) => (
                       <div
@@ -132,7 +137,7 @@ export default function Navbar() {
                           setActiveNavbar(index);
                         }}
                         key={item.name}
-                        className="flex hover:font-medium text-[12px] lg:text-[14px] items-center"
+                        className="flex hover:font-medium text-[12px] lg:text-[16px] items-center"
                       >
                         {item.children?.length ? (
                           <button
@@ -157,7 +162,7 @@ export default function Navbar() {
                             className={`${
                               item.pathname === pathname.split("/")[1]
                                 ? "font-bold"
-                                : " hover:font-medium"
+                                : "hover:font-medium"
                             } px-3 py-1 transition-all duration-200 rounded-md`}
                           >
                             {item.name}
@@ -172,6 +177,10 @@ export default function Navbar() {
                                 setActiveNavbar(index);
                               }
                             }}
+                            className={cn(
+                              "transition-all duration-400",
+                              activeNavbar === index && "rotate-180"
+                            )}
                             size={20}
                           />
                         )}
@@ -229,28 +238,66 @@ export default function Navbar() {
       {/* Overlay Menu Mobile */}
       {width < 1200 && (
         <div
-          className={`fixed inset-0 h-screen bg-[#E9E9E9] text-white flex flex-col items-center justify-center z-50 transition-all duration-300 ${
+          className={`fixed inset-0  h-screen bg-white text-[#18368F] flex flex-col z-50 transition-all duration-300 ${
             toggle ? "translate-x-0 opacity-100" : "translate-x-full opacity-0"
           }`}
         >
           {/* Tombol Close */}
-          <button
-            className="absolute top-5 right-5 text-white text-3xl"
-            onClick={() => setToggle(false)}
-          >
-            <BsX />
-          </button>
+          <div className="flex justify-between bg-[#E9E9E9] items-center p-5">
+            <Image
+              src="/logo/brandev-blue.png"
+              alt="logo"
+              width={100}
+              height={100}
+              className="top-7 left-5"
+              sizes="100vw"
+            />
+            <button
+              className="  text-[#18368F] text-3xl"
+              onClick={() => setToggle(false)}
+            >
+              <BsX />
+            </button>
+          </div>
 
           {/* Navigasi Mobile */}
-          <ul className="text-2xl space-y-6">
+          <ul className="text-xl space-y-6 mt-5 px-5">
             {navigation.map((item) => (
-              <li key={item.name} onClick={() => setToggle(false)}>
-                <a
-                  href={item.href}
-                  className="hover:text-gray-300 transition-colors"
-                >
-                  {item.name}
-                </a>
+              <li key={item.name}>
+                {item.children?.length ? (
+                  <Disclosure as={"div"}>
+                    {({ open }) => (
+                      <>
+                        <DisclosureButton className="flex gap-2 justify-between items-center w-full hover:font-medium">
+                          <span>{item.name}</span>
+                          <CgChevronDown
+                            className={cn(
+                              "transition-all duration-400",
+                              open && "rotate-180"
+                            )}
+                            size={20}
+                          />
+                        </DisclosureButton>
+                        <DisclosurePanel className={"mt-4"}>
+                          <ul className="space-y-4 ">
+                            {item.children.map((subItem) => (
+                              <li key={subItem.name} className="text-[#4567ce]">
+                                <a href={subItem.href}>{subItem.name}</a>
+                              </li>
+                            ))}
+                          </ul>
+                        </DisclosurePanel>
+                      </>
+                    )}
+                  </Disclosure>
+                ) : (
+                  <a
+                    href={item.href}
+                    className="hover:font-medium transition-all duration-300"
+                  >
+                    {item.name}
+                  </a>
+                )}
               </li>
             ))}
           </ul>
