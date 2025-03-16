@@ -211,6 +211,7 @@ export default function Navbar() {
                       <Image
                         src={item.image}
                         alt="icon"
+                        loading="eager"
                         className="max-h-[80px] max-w-[80px]"
                         width={80}
                         height={80}
