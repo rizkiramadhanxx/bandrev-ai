@@ -150,7 +150,7 @@ export default function Navbar() {
                             }}
                             className={`${
                               item.pathname === pathname.split("/")[1]
-                                ? "font-medium "
+                                ? "font-normal "
                                 : "hover:font-medium"
                             } px-3 py-1 transition-all duration-200 rounded-md`}
                           >
@@ -161,7 +161,7 @@ export default function Navbar() {
                             href={item.href}
                             className={`${
                               item.pathname === pathname.split("/")[1]
-                                ? "font-bold"
+                                ? "font-normal"
                                 : "hover:font-medium"
                             } px-3 py-1 transition-all duration-200 rounded-md`}
                           >
@@ -190,9 +190,12 @@ export default function Navbar() {
               </div>
               {width > 1200 ? (
                 <div>
-                  <button className="bg-white px-[20px] py-[10px] rounded-md text-[#18368F]">
+                  <a
+                    href="/contact"
+                    className="bg-white px-[20px] py-[10px] rounded-md text-[#18368F]"
+                  >
                     Contact Us
-                  </button>
+                  </a>
                 </div>
               ) : (
                 <BsList size={30} onClick={() => setToggle(true)} />
