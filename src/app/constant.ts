@@ -50,14 +50,14 @@ const navigation = [
       },
       {
         name: "GenAI Assets",
-        href: "/gen-ai-assets",
-        pathname: "promo",
+        href: "/gen-ai",
+        pathname: "gen-ai",
         image: "/navbar/gen-ai.png",
       },
       {
         name: "Tune AI",
-        href: "/platform",
-        pathname: "profil",
+        href: "/tune-ai",
+        pathname: "tune-ai",
         image: "/navbar/tune-ai.png",
       },
     ],
@@ -94,8 +94,8 @@ const navigation = [
     children: [
       {
         name: "AI's Impact on Jobs",
-        href: "/ai-impact-jobs",
-        pathname: "ai-impact-jobs",
+        href: "/ai-impact",
+        pathname: "ai-impact",
         image: "/navbar/ai-impact-jobs.png",
       },
       {
