@@ -48,7 +48,7 @@ export default function Contact() {
               </div>
             </div>
           </div>
-          <div className="fade-up text-white min-h-[400px] flex flex-col justify-between rounded-lg">
+          <div className="fade-up text-white mt-6 md:mt-0 md:min-h-[400px] flex flex-col justify-between rounded-lg">
             <div className="text-xl">
               {/* You have a new AI Insider Newsletter management @brandrev.ai */}
             </div>
