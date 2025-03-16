@@ -27,7 +27,7 @@ export default function HeroHome() {
           playsInline
         />
 
-        <div className="flex items-center h-[100%]">
+        <div className="flex items-center h-[100%] z-">
           <div ref={boxRef}>
             <h1 className="text-[21px] lg:text-[30px]  text-white">
               Discover what AI can do for you
