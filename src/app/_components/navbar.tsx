@@ -122,8 +122,8 @@ export default function Navbar() {
                         : "/logo/brandev-blue.png"
                     }
                     alt="logo"
-                    width={0}
-                    height={0}
+                    width={100}
+                    height={100}
                     sizes="100vw"
                     className="w-[100px] h-[100px] md:w-[150px] md:h-[150px] object-contain"
                   />

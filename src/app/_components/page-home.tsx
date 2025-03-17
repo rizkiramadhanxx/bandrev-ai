@@ -22,7 +22,7 @@ export default function PageHome() {
       return gsap.from(el, {
         opacity: 0,
         y: 50,
-        duration: 1.5,
+        duration: 0.5,
         ease: "power2.out",
         scrollTrigger: {
           trigger: el,
@@ -63,7 +63,7 @@ export default function PageHome() {
             {enable.map((item, index) => (
               <div
                 key={index}
-                className="flex fade-up cursor-pointer hover:bg-[#18368f] hover:text-white justify-between flex-col rounded-[40px] gap-[44px] max-w-[1000px] bg-[#f6f6f6] py-[60px] px-[20px] transition-all duration-300 ease-in-out"
+                className="flex fade-up cursor-pointer shadow-md hover:bg-[#18368f] hover:text-white justify-between flex-col rounded-[40px] gap-[44px] max-w-[1000px] bg-[#f5f0f0] py-[60px] px-[20px] transition-all duration-300 ease-in-out"
               >
                 <div className="flex items-center justify-center">
                   <Image

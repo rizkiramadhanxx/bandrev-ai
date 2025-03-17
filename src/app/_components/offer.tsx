@@ -47,7 +47,7 @@ export default function Offer() {
 
   return (
     <div className="relative bg-slate my-[50px] flex justify-center border-t-[2px] border-b-[2px] border-[#ABABABA]">
-      <div className="w-full main-container">
+      <div className="w-full px-0 main-container">
         <div className="border-l-[2px] border-r-[2px] pb-10 border-[#ABABABA]">
           {/* Sticky Title */}
           <div className="sticky top-0 z-10 bg-white pt-10 pb-5 text-center">
@@ -98,7 +98,7 @@ export default function Offer() {
                 // @ts-ignore
                 ref={(el) => (itemsRef.current[index] = el)}
                 data-index={index}
-                className={`max-w-[1000px] bg-[#F6F6F6] p-[10px] md:p-[50px] w-[70%] rounded-sm md:rounded-[40px] border-[#E9E9E9] border-[1px] shadow-lg transform transition-all `}
+                className={`max-w-[1000px] px-3 bg-[#F6F6F6] p-[10px] md:p-[50px] w-[70%] rounded-sm md:rounded-[40px] border-[#E9E9E9] border-[1px] shadow-lg transform transition-all `}
               >
                 <div className="flex flex-col md:flex-row items-center gap-[44px]">
                   <div className="max-w-[100px] md:max-w-[400px]">
@@ -111,8 +111,12 @@ export default function Offer() {
                     />
                   </div>
                   <div>
-                    <div className="text-[18px] font-medium">{item.title}</div>
-                    <div className="text-sm mt-[20px]">{item.description}</div>
+                    <div className=" xl:text-[18px] font-medium">
+                      {item.title}
+                    </div>
+                    <div className="text-xs xl:text-[16px] mt-[20px]">
+                      {item.description}
+                    </div>
                     <div className="flex justify-end">
                       <button className="mt-[10px] md:mt-[30px] rounded-md text-sm flex items-center text-white bg-[#3958e9] px-[20px]  md:px-[30px] py-[10px]">
                         Read More
