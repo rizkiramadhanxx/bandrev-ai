@@ -1,6 +1,7 @@
 "use client";
 
 import gsap from "gsap";
+import Image from "next/image";
 import { useEffect, useRef } from "react";
 import { FaChevronCircleRight } from "react-icons/fa";
 
@@ -17,14 +18,23 @@ export default function HeroAIdevelopment() {
   }, []);
 
   return (
-    <div className="flex justify-center bg-no-repeat pt-[50px] md:pt-[60px] items-center bg-cover min-h-[100vh] bg-[url(/banner/banner-ai-development.png)]">
+    <div className="flex justify-center bg-no-repeat pt-[50px] md:pt-[60px] items-center bg-cover min-h-[100vh]">
+      <Image
+        src="/banner/banner-ai-development.png"
+        alt="AI Banner"
+        layout="fill"
+        objectFit="cover"
+        className="z-[-1]"
+        quality={100}
+        priority
+      />
       <div className="main-container w-[100%]">
         <div className="flex items-center">
           <div ref={boxRef}>
-            <h1 className="text-[21px] lg:text-[30px]  text-white">
+            <h1 className="text-[21px] lg:text-[30px] text-white">
               AI Development
             </h1>
-            <div className="text-[13px] max-w-[400px] mt-[20px] text-white">
+            <div className="text-[14px] xl:text-base max-w-[400px] mt-[20px] text-white">
               Build a cost effective GenAI solution now to boost efficiency,
               reduce costs, and secure your competitive edge before it s too
               late.

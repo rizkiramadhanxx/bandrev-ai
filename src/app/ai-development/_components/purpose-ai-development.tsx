@@ -362,13 +362,13 @@ export default function PurposeAIDevelopment() {
                       onChange={setSelectedIndex}
                     >
                       {/* Tabs List */}
-                      <TabList className="flex xl:space-x-2 text xl:w-[500px] bg-gray-100  rounded-t-lg">
+                      <TabList className="flex xl:space-x-2 xl:w-[80%] bg-gray-100  rounded-t-lg">
                         {item.tabs.map((tab, index) => (
                           <Tab
                             key={tab.name}
                             className={({ selected }) =>
                               cn(
-                                "w-full text-xs xl:text-base font-medium rounded-t-lg p-2 xl:p-4 transition",
+                                "w-full text-[12px] xl:text-base font-medium rounded-t-lg p-1 xl:p-2 transition",
                                 selected
                                   ? "bg-white shadow text-black"
                                   : "text-gray-500 hover:bg-gray-200"

@@ -4,13 +4,11 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 import gsap from "gsap";
 import Image from "next/image";
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import Marquee from "react-fast-marquee";
 import { enable } from "../constant";
 import Contact from "./contact";
-import Footer from "./footer";
 import HeroHome from "./hero-home";
-import Navbar from "./navbar";
 import Offer from "./offer";
 
 export default function PageHome() {
