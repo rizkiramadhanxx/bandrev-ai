@@ -47,7 +47,7 @@ export default function Offer() {
 
   return (
     <div className="relative bg-slate my-[50px] flex justify-center border-t-[2px] border-b-[2px] border-[#ABABABA]">
-      <div className="w-full px-0 main-container">
+      <div className="w-full main-container-no-mobile">
         <div className="border-l-[2px] border-r-[2px] pb-10 border-[#ABABABA]">
           {/* Sticky Title */}
           <div className="sticky top-0 z-10 bg-white pt-10 pb-5 text-center">
